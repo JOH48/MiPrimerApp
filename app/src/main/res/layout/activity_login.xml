@@ -12,8 +12,9 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:text="JORGE APP"/>
-    
+
     <EditText
         android:id="@+id/activity_main_txtUser"
         android:inputType="text"
