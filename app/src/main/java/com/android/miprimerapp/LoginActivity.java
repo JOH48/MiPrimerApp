@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             Toast.LENGTH_SHORT).show();
                 } else {
                     Boolean searchUser = UserDataBase.searchUsername(txtUser.getText().toString().trim());
-
+                    //UN CAMBIO.
                     if (searchUser == true ) {
                         if (UserDataBase.login(txtUser.getText().toString().trim(),
                                 txtPassword.getText().toString().trim()) == true) {
