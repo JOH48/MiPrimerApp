@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">MiprimerApp</string>
+    <string name="button_login">Inicia sesion</string>
+    <string name="Cancel">Cancelar</string>
+    <string name="Password">Contraseña</string>
+    <string name="button_register">Registrarme</string>
+    <string name="user">Usuario</string>
+    <string name="firstName">Nombres</string>
+    <string name="secondName">Apellidos</string>
+    <string name="repitePassword">Repetir Contraseña</string>
+</resources>

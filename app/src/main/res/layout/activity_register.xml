@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".RegisterActivity">
+
+    <EditText
+        android:id="@+id/register_activity_txtUser"
+        android:hint="@string/user"
+        style="@style/EditTextRegister"/>
+    <EditText
+        android:id="@+id/register_activity_txtName"
+        android:hint="@string/firstName"
+        style="@style/EditTextRegister"/>
+
+    <EditText
+        android:id="@+id/register_activitytxtSecondName"
+        android:hint="@string/secondName"
+        style="@style/EditTextRegister"/>
+
+    <EditText
+        android:id="@+id/register_activity_txtPassword"
+        android:hint="@string/Password"
+        style="@style/EditTextRegister"/>
+
+    <EditText
+        android:id="@+id/register_activity_txtRepeatedPassword"
+        android:hint="@string/repitePassword"
+        style="@style/EditTextRegister"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        >
+
+        <Button
+            android:id="@+id/register_activity_btnCancel"
+            android:text="@string/Cancel"
+            android:layout_width="150dp"
+            android:textColor="@color/colorWhitePrimary"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/colorCancelButton"
+            />
+
+        <Button
+            android:id="@+id/register_activity_btnRegister"
+            android:text="@string/button_register"
+            android:layout_width="150dp"
+            android:textColor="@color/colorWhitePrimary"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/colorAcceptButton"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
