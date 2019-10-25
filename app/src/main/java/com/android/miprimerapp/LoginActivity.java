@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.activity_main_btnLogin:
-                //aca metemos todo lo que queremos que haga el boton login....
+                //aca metemos todo lo que queremos que haga el boton login...
 
                 if (txtUser.getText().toString().trim().equals("") ||
                         txtPassword.getText().toString().trim().equals("")) {
