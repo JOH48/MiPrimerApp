@@ -2,8 +2,6 @@ package com.android.miprimerapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.service.autofill.UserData;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -12,12 +10,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.miprimerapp.dataBase.UserDataBase;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
+public class LoginActivity extends AppCompatActivity {
+
+    @BindView(R.id.activity_main_btnLogin)
     Button btnLogin;
+    @BindView(R.id.activity_main_btnRegister)
     Button btnRegister;
+    @BindView(R.id.activity_main_txtUser)
     EditText txtUser;
+    @BindView(R.id.activity_main_txtPassword)
     EditText txtPassword;
 
 
@@ -25,61 +31,38 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        //dentro de este metodo... se une la parte grafica y la parte de codigo.
-        btnLogin = findViewById(R.id.activity_main_btnLogin);
-        btnRegister = findViewById(R.id.activity_main_btnRegister);
-        txtUser = findViewById(R.id.activity_main_txtUser);
-        txtPassword = findViewById(R.id.activity_main_txtPassword);
-
-
-        //Aca le indicamos en que clase ... se van a manejar los eventos.
-        btnLogin.setOnClickListener(this);
-        btnRegister.setOnClickListener(this);
+        ButterKnife.bind(this);
     }
 
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.activity_main_btnLogin:
-                //aca metemos todo lo que queremos que haga el boton login....
+    @OnClick(R.id.activity_main_btnLogin)
+    public void tryLogin() {
+        if (txtUser.getText().toString().trim().equals("") ||
+                txtPassword.getText().toString().trim().equals("")) {
+            Toast.makeText(this, "EL USUARIO Y CONTRASEÑA SON OBLIGATORIOS",
+                    Toast.LENGTH_SHORT).show();
+        } else {
+            Boolean searchUser = UserDataBase.searchUsername(txtUser.getText().toString().trim());
 
-                if (txtUser.getText().toString().trim().equals("") ||
-                        txtPassword.getText().toString().trim().equals("")) {
-                    Toast.makeText(this, "EL USUARIO Y CONTRASEÑA SON OBLIGATORIOS",
-                            Toast.LENGTH_SHORT).show();
+            if (searchUser == true) {
+                if (UserDataBase.login(txtUser.getText().toString().trim(),
+                        txtPassword.getText().toString().trim()) == true) {
+                    startLandingActivity();
                 } else {
-                    Boolean searchUser = UserDataBase.searchUsername(txtUser.getText().toString().trim());
-
-                    if (searchUser == true ) {
-                        if (UserDataBase.login(txtUser.getText().toString().trim(),
-                                txtPassword.getText().toString().trim()) == true) {
-                            startLandingActivity();
-                        } else {
-                            Toast.makeText(this, "Contraseña es incorrecta", Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Toast.makeText(this, "EL USUARIO NO EXISTE", Toast.LENGTH_SHORT).show();
-                    }
+                    Toast.makeText(this, "Contraseña es incorrecta", Toast.LENGTH_SHORT).show();
                 }
-
-                /*if(validateFields()==true && validateLogin()==true){
-                       if (UserDataBase.login(txtUser.getText().toString().trim(), txtPassword.getText().toString().trim()) == true) {
-                           startLandingActivity();
-                       } else {
-                           Toast.makeText(this, "El usuario o contraseña estan icorrectos", Toast.LENGTH_SHORT).show();
-                       }
-                }*/
-                break;
-            case R.id.activity_main_btnRegister:
-                //aca metemos todo lo que queremos que haga el boton register..
-                startRegisterActivity();
-                break;
-
+            } else {
+                Toast.makeText(this, "EL USUARIO NO EXISTE", Toast.LENGTH_SHORT).show();
+            }
         }
-
     }
+
+
+    @OnClick(R.id.activity_main_btnRegister)
+    public void tryRegister() {
+        startRegisterActivity();
+    }
+
 
     private Boolean validateLogin() {
         Boolean vlog = false;
